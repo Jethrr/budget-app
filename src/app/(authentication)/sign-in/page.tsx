@@ -22,7 +22,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { MoonLoader } from "react-spinners";
-
+import Image from "next/image";
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 8 characters"),

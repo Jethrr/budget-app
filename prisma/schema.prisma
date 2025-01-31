@@ -31,6 +31,31 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  currentBalance Float @default(0.0)
+  expenses       Expense[]
+  incomes        Income[]
+}
+
+model Expense {
+  id          String   @id @default(cuid()) @map("_id")
+  userId      String
+  amount      Float
+  category    String
+  description String?
+  date        DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Income {
+  id          String   @id @default(cuid()) @map("_id")
+  userId      String
+  amount      Float
+  source      String
+  description String?
+  date        DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Session {
